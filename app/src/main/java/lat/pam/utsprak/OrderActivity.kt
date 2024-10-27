@@ -41,7 +41,7 @@ class OrderActivity : AppCompatActivity() {
 
             // Get values from EditText fields
             val servings = findViewById<EditText>(R.id.etServings).text.toString()
-            val orderingName = findViewById<EditText>(R.id.etFoodName).text.toString()
+            val orderingName = findViewById<EditText>(R.id.etName).text.toString()
             val notes = findViewById<EditText>(R.id.etNotes).text.toString()
 
             // Pass all data to ConfirmationActivity
