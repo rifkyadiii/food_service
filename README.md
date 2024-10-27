@@ -5,4 +5,8 @@ Tampilan Aplikasi:
 
 ![image](https://github.com/user-attachments/assets/2405b50b-deb1-4ba6-b369-09315db480ec)
 
-![image](https://github.com/user-attachments/assets/8fc48cb8-1d98-4013-a6cd-a323bacfc814)
+![image](https://github.com/user-attachments/assets/f07d0f1e-136d-48c5-a2ef-d5c6bbcefb76)
+
+![image](https://github.com/user-attachments/assets/330e58f1-5cf6-48f2-97c7-1cf5660db030)
+
+![image](https://github.com/user-attachments/assets/1d4e5d11-3fce-4099-884c-5828fc1b5cb9)
