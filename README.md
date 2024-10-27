@@ -9,4 +9,6 @@ Tampilan Aplikasi:
 
 ![image](https://github.com/user-attachments/assets/330e58f1-5cf6-48f2-97c7-1cf5660db030)
 
-![image](https://github.com/user-attachments/assets/1d4e5d11-3fce-4099-884c-5828fc1b5cb9)
+Demo Aplikasi:
+[Screencast From 2024-10-27 23-55-27.webm](https://github.com/user-attachments/assets/b6665d7e-45c3-4775-92ac-bf69d41815dc)
+
