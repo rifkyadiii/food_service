@@ -4,5 +4,11 @@
     <string name="hint_password">Password</string>
     <string name="login">Login\n</string>
     <string name="register">Register Here</string>
-    <string name="food_list_title">Food and Beverages</string>
+    <string name="food_list_title">Sunny Food</string>
+    <string name="kembali">Kembali</string>
+    <string name="order_confirmation_title">Order Food Confirmation</string>
+    <string name="food_name">Food Name: %1$s</string>
+    <string name="servings">Number of Servings: %1$s pax</string>
+    <string name="ordering_name">Ordering Name: %1$s</string>
+    <string name="additional_notes">Additional Notes: %1$s</string>
 </resources>

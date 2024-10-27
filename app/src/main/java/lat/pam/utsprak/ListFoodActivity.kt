@@ -2,34 +2,56 @@ package lat.pam.utsprak
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.button.MaterialButton
 
 class ListFoodActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: FoodAdapter
     private lateinit var foodList: List<Food>
+    private lateinit var btnLogout: MaterialButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_list_food)
 
+        // Setup RecyclerView
+        setupRecyclerView()
+
+        // Setup Data
+        prepareData()
+
+        // Setup Logout Button
+        setupLogoutButton()
+    }
+
+    private fun setupLogoutButton() {
+        btnLogout = findViewById(R.id.btnLogout)
+        btnLogout.setOnClickListener {
+            // Kembali ke MainActivity dan clear stack
+            val intent = Intent(this, MainActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
+            startActivity(intent)
+            finish()
+        }
+    }
+
+    private fun setupRecyclerView() {
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.setHasFixedSize(true)
+    }
 
-        // Menyiapkan data makanan
+    private fun prepareData() {
         foodList = listOf(
             Food("Batagor", "Batagor asli enak dari Bandung", R.drawable.batagor),
             Food("Black Salad", "Salad segar yang dibuat secara langsung", R.drawable.black_salad),
             Food("Cappucino", "Kopi cappucino asli yang dibuat dari Kopi Arabica", R.drawable.cappuchino)
         )
 
-        // Tambahkan handler onClick
         adapter = FoodAdapter(foodList) { food ->
             val intent = Intent(this, OrderActivity::class.java).apply {
                 putExtra("FOOD_NAME", food.name)
@@ -39,11 +61,5 @@ class ListFoodActivity : AppCompatActivity() {
             startActivity(intent)
         }
         recyclerView.adapter = adapter
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
     }
 }

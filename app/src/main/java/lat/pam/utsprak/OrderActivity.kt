@@ -4,11 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import lat.pam.utsprak.ConfirmationActivity
 
 class OrderActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,31 +22,43 @@ class OrderActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-// Terima data dari intent
-        val foodName = intent.getStringExtra("FOOD_NAME") ?: "Default Food"
-        val foodDesc = intent.getStringExtra("FOOD_DESC") ?: "Default Description"
-        val foodImage = intent.getIntExtra("FOOD_IMAGE", 0)
 
-        val etServings = findViewById<EditText>(R.id.etServings)
-        val etName = findViewById<EditText>(R.id.etName)
-        val etNotes = findViewById<EditText>(R.id.etNotes)
+        // Terima data dari Intent
+        val foodName = intent.getStringExtra("FOOD_NAME")
+        val foodImageResId = intent.getIntExtra("FOOD_IMAGE", 0)
 
-        val etFoodName = findViewById<TextView>(R.id.etFoodName)
-        etFoodName.text = foodName ?: "Unknown"
+        // Tampilkan data di layout
+        val ivFoodImage = findViewById<ImageView>(R.id.ivFoodImage)
+        val tvFoodName = findViewById<TextView>(R.id.etFoodName)
 
+        // Set data
+        tvFoodName.text = foodName
+        ivFoodImage.setImageResource(foodImageResId)
+
+        // Set button Place Order
         findViewById<Button>(R.id.btnOrder).setOnClickListener {
-            val servings = etServings.text.toString()
-            val name = etName.text.toString()
-            val notes = etNotes.text.toString()
+            val intent = Intent(this, ConfirmationActivity::class.java)
 
-            // Intent untuk memindahkan data ke ConfirmationActivity
-            val intent = Intent(this, ConfirmationActivity::class.java).apply {
-                putExtra("FOOD_NAME", foodName)
-                putExtra("SERVINGS", servings)
-                putExtra("ORDER_NAME", name)
-                putExtra("NOTES", notes)
-            }
+            // Get values from EditText fields
+            val servings = findViewById<EditText>(R.id.etServings).text.toString()
+            val orderingName = findViewById<EditText>(R.id.etFoodName).text.toString()
+            val notes = findViewById<EditText>(R.id.etNotes).text.toString()
+
+            // Pass all data to ConfirmationActivity
+            intent.putExtra("FOOD_NAME", foodName)
+            intent.putExtra("FOOD_IMAGE", foodImageResId)
+            intent.putExtra("SERVINGS", servings)
+            intent.putExtra("ORDERING_NAME", orderingName)
+            intent.putExtra("NOTES", notes)
+
             startActivity(intent)
+        }
+
+        // Button untuk kembali ke ListFoodActivity
+        findViewById<Button>(R.id.btnBackToList).setOnClickListener {
+            val intent = Intent(this, ListFoodActivity::class.java)
+            startActivity(intent)
+            finish() // Menutup OrderActivity setelah kembali
         }
     }
 }
